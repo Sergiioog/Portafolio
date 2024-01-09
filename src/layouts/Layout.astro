@@ -5,6 +5,94 @@ interface Props {
 
 const { title } = Astro.props;
 ---
+<script type="module">
+    import * as PIXI from "https://cdn.skypack.dev/pixi.js@5.x";
+	import hsl from "https://cdn.skypack.dev/hsl-to-hex";
+
+	// return a random number within a range
+	function random(min, max) {
+	return Math.random() * (max - min) + min;
+	}
+
+	// ColorPalette class
+	class ColorPalette {
+	constructor() {
+		this.setColors();
+		this.setCustomProperties();
+	}
+
+	setColors() {
+		// pick a random hue somewhere between 220 and 360
+		this.hue = ~~random(140, 360);
+		this.complimentaryHue1 = this.hue + 30;
+		this.complimentaryHue2 = this.hue + 60;
+		// define a fixed saturation and lightness
+		this.saturation = 95;
+		this.lightness = 55; 
+		// define a base color
+		this.baseColor = hsl(this.hue, this.saturation, this.lightness);
+		// define a complimentary color, 30 degress away from the base
+		this.complimentaryColor1 = hsl(
+		this.complimentaryHue1,
+		this.saturation,
+		this.lightness
+		);
+		// define a second complimentary color, 60 degrees away from the base
+		this.complimentaryColor2 = hsl(
+		this.complimentaryHue2,
+		this.saturation,
+		this.lightness
+		);
+
+		// store the color choices in an array so that a random one can be picked later
+		this.colorChoices = [
+		this.baseColor,
+		this.complimentaryColor1,
+		this.complimentaryColor2
+		];
+	}
+
+	
+
+	setCustomProperties() {
+		// set CSS custom properties so that the colors defined here can be used throughout the UI
+		document.documentElement.style.setProperty("--hue", this.hue);
+		document.documentElement.style.setProperty(
+		"--hue-complimentary1",
+		this.complimentaryHue1
+		);
+		document.documentElement.style.setProperty(
+		"--hue-complimentary2",
+		this.complimentaryHue2
+		);
+	}
+	}
+
+
+
+	// Create PixiJS app
+	const app = new PIXI.Application({
+	// render to <canvas class="orb-canvas"></canvas>
+	view: document.querySelector(".orb-canvas"),
+	// auto adjust size to fit the current window
+	resizeTo: window
+	});
+
+	// Set background color for the body
+	document.body.style.backgroundColor = "#f0f0f0"; // Cambia este color según tus preferencias
+
+	// Create colour palette
+	const colorPalette = new ColorPalette();
+
+	// Create orbs
+	const orbs = [];
+
+
+
+
+
+
+</script>
 
 <!doctype html>
 <html lang="en">
@@ -12,7 +100,7 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="assets/iconos/sergiologo.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
@@ -22,111 +110,206 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
-	:root {
-		--dark-color: hsl(var(--hue), 100%, 9%);
-		--light-color: hsl(var(--hue), 95%, 98%);
-		--base: hsl(var(--hue), 95%, 50%);
-		--complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
-		--complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
-
-		--font-family: "Poppins", system-ui;
-
-		--bg-gradient: linear-gradient(
-			to bottom,
-			hsl(var(--hue), 95%, 99%),
-			hsl(var(--hue), 95%, 84%)
-		);
-	}
-	html {
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-	
 	body {
 		background-color: transparent !important;
+		background-color: white;
 	}
 	.container {
 		background-color: transparent !important;
 	}
+	:root {
+	--dark-color: hsl(var(--hue), 100%, 9%);
+	--light-color: hsl(var(--hue), 95%, 98%);
+	--base: hsl(var(--hue), 95%, 50%);
+	--complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
+	--complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
 
-	/* Box sizing rules */
-	*,
-	*::before,
-	*::after {
-		box-sizing: border-box;
-	}
+	--font-family: "Poppins", system-ui;
 
-	/* Remove default padding */
-	ul[class],
-	ol[class] {
-		padding: 0;
-	}
+	--bg-gradient: linear-gradient(
+		to bottom,
+		hsl(var(--hue), 95%, 99%),
+		hsl(var(--hue), 95%, 84%)
+	);
+}
 
-	/* Remove default margin */
-	body,
-	h1,
-	h2,
-	h3,
-	h4,
-	p,
-	ul[class],
-	ol[class],
-	li,
-	figure,
-	figcaption,
-	blockquote,
-	dl,
-	dd {
-		margin: 0;
-	}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-	/* Set core body defaults */
-	body {
-		min-height: 100vh;
-		scroll-behavior: smooth;
-		text-rendering: optimizeSpeed;
-		line-height: 1.5;
-	}
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-	/* Remove list styles on ul, ol elements with a class attribute */
-	ul[class],
-	ol[class] {
-		list-style: none;
-	}
+body {
 
-	/* A elements that don't have a class get default styles */
-	a:not([class]) {
-		text-decoration-skip-ink: auto;
-	}
+  font-family: var(--font-family);
+  color: var(--dark-color);
+  background: var(--bg-gradient);
+}
 
-	/* Make images easier to work with */
-	img {
-		max-width: 100%;
-		display: block;
-	}
+.orb-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
 
-	/* Natural flow and rhythm in articles by default */
-	article > * + * {
-		margin-top: 1em;
-	}
+strong {
+  font-weight: 600;
+}
 
-	/* Inherit fonts for inputs and buttons */
-	input,
-	button,
-	textarea,
-	select {
-		font: inherit;
-	}
 
-	/* Remove all animations and transitions for people that prefer not to see them */
-	@media (prefers-reduced-motion: reduce) {
-		* {
-			animation-duration: 0.01ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.01ms !important;
-			scroll-behavior: auto !important;
-		}
+
+a {
+  text-decoration: none;
+  color: var(--dark-color);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+	padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Set core body defaults */
+body {
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+	list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+	max-width: 100%;
+	display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+	margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
 	}
+}
+	
+/* Not too many browser support this yet but it's good to add! */
+@media (prefers-contrast: high) {
+  .orb-canvas {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .overlay {
+    padding: 8rem 4rem;
+  }
+}
+
+@media only screen and (max-width: 840px) {
+
+
+  .overlay {
+    padding: 4rem;
+    height: auto;
+  }
+
+  .overlay__title {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .overlay__description {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .overlay {
+    padding: 1.5rem;
+  }
+
+  .overlay__btns {
+    flex-wrap: wrap;
+  }
+
+  .overlay__btn {
+    width: 100%;
+    font-size: 0.75rem;
+    margin-right: 0;
+  }
+
+  .overlay__btn:first-child {
+    margin-bottom: 1rem;
+  }
+}
 		
 
 </style>
