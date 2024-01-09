@@ -13,6 +13,12 @@ import Header from '../components/Header.astro';
 			</figure>
 			<h1>Sergio García</h1>
 			<h2 class="text-gradient">Desarrollador Web</h2>
+			<div id="lista_redes">
+				<a href="#"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
+				<a href="#"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
+				<a href="#"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
+			</div>
+			  
 		</div>
 	</section>
 	<section id="seccionSergio">
@@ -132,4 +138,18 @@ import Header from '../components/Header.astro';
 		max-width: 100%;
 		max-width: 100%;
 	}
+	
+	#lista_redes {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 35px; /* ajusta según sea necesario */
+	}
+
+	#lista_redes a {
+		text-decoration: none;
+		color: white; /* ajusta según sea necesario */
+		margin: 0 8px; /* ajusta según sea necesario */
+	}
+
 </style>
