@@ -14,9 +14,9 @@ import Header from '../components/Header.astro';
 			<h1>Sergio García</h1>
 			<h2 class="text-gradient">Desarrollador Web</h2>
 			<div id="lista_redes">
-				<a href="#"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
-				<a href="#"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
-				<a href="#"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
+				<a href="https://github.com/Sergiioog"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
+				<a href="https://www.linkedin.com/feed/"><img id="linkedIn" src="assets/iconos/linkedinred.svg" alt="LinkedIn"></a>
+				<a href="https://twitter.com/home"><img src="assets/iconos/xred.svg" alt="X"></a>
 			</div>
 			  
 		</div>
@@ -150,6 +150,15 @@ import Header from '../components/Header.astro';
 		text-decoration: none;
 		color: white; /* ajusta según sea necesario */
 		margin: 0 8px; /* ajusta según sea necesario */
+		margin-top: 10px;
+	}
+	#lista_redes a img {
+		height: 35px;
+		width: 35px;
+	}
+	#linkedIn {
+		height: 100%;
+	;
 	}
 
 </style>
