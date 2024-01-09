@@ -6,12 +6,11 @@ interface Props {
 const { title } = Astro.props;
 ---
 <script type="module">
-    import * as PIXI from "https://cdn.skypack.dev/pixi.js@5.x";
 	import hsl from "https://cdn.skypack.dev/hsl-to-hex";
 
 	// return a random number within a range
 	function random(min, max) {
-	return Math.random() * (max - min) + min;
+		return Math.random() * (max - min) + min;
 	}
 
 	// ColorPalette class
@@ -23,7 +22,7 @@ const { title } = Astro.props;
 
 	setColors() {
 		// pick a random hue somewhere between 220 and 360
-		this.hue = ~~random(140, 360);
+		this.hue = ~~random(0, 360);
 		this.complimentaryHue1 = this.hue + 30;
 		this.complimentaryHue2 = this.hue + 60;
 		// define a fixed saturation and lightness
@@ -57,10 +56,7 @@ const { title } = Astro.props;
 	setCustomProperties() {
 		// set CSS custom properties so that the colors defined here can be used throughout the UI
 		document.documentElement.style.setProperty("--hue", this.hue);
-		document.documentElement.style.setProperty(
-		"--hue-complimentary1",
-		this.complimentaryHue1
-		);
+		
 		document.documentElement.style.setProperty(
 		"--hue-complimentary2",
 		this.complimentaryHue2
@@ -70,22 +66,15 @@ const { title } = Astro.props;
 
 
 
-	// Create PixiJS app
-	const app = new PIXI.Application({
-	// render to <canvas class="orb-canvas"></canvas>
-	view: document.querySelector(".orb-canvas"),
-	// auto adjust size to fit the current window
-	resizeTo: window
-	});
 
-	// Set background color for the body
-	document.body.style.backgroundColor = "#f0f0f0"; // Cambia este color según tus preferencias
+
+	
 
 	// Create colour palette
 	const colorPalette = new ColorPalette();
 
-	// Create orbs
-	const orbs = [];
+
+
 
 
 
@@ -142,13 +131,15 @@ const { title } = Astro.props;
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background:#e8e8e8;
 }
 
 body {
 
   font-family: var(--font-family);
   color: var(--dark-color);
-  background: var(--bg-gradient);
+  /* background: var(--bg-gradient); */
+
 }
 
 .orb-canvas {

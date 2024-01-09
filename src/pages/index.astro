@@ -6,7 +6,7 @@ import Header from '../components/Header.astro';
 
 <Layout title="Sergiioog">
 	<Header />
-	<section>
+	<section id="principal">
 		<div class="sergioPrincipal">
 			<figure>
 				<img src="assets/fotos/sergio.png" alt="Foto de Sergio">
@@ -15,12 +15,29 @@ import Header from '../components/Header.astro';
 			<h2 class="text-gradient">Desarrollador Web</h2>
 		</div>
 	</section>
+	<section id="seccionSergio">
+		<h2>¿Quién es <span class="text-gradient">Sergio</span>?</h2>
+        <div id="contenido">
+          <p class="texto">¡Hola! Mi nombre es Sergio García, tengo 19 años y actualmente estoy estudiando un Ciclo Formativo de Grado Superior
+            (CFGS) de Desarrollo de Aplicaciones Web en la U-Tad (Universidad de Tecnología y Arte Digital), adscrita a la Universidad Camilo José Cela. <br><br>
+            Desde pequeño me ha gustado el mundo de la tecnología, los ordenadores y la programación. Actualmente estoy familiarizándome con 
+            lenguajes de programacion cómo Java, JavaScript o Angular aunque trabajo constantemente para seguir mejorando.
+            <br><br>
+            Entre mis aptitudes considero que soy una persona trabajadora y curiosa, a la que le gusta aprender y mejorar en cuálquier ámbito
+            de su vida.</p>
+            <figure id="figureIlustracion">
+              <img src="assets/ilustraciones/sergioilus.png" alt="Foto de Sergio" id="sergioilus">
+          </figure>
+        </div>
+	</section>
+
 </Layout>
 
 <style>
-	section {
-		height: 100vh; /*Cambiar a auto*/
+	#principal {
+		height: auto; /*Cambiar a auto*/
 		width: 100%;
+		margin-bottom: 35vh;
 	}
 	.sergioPrincipal {
 		height: auto;
@@ -78,8 +95,41 @@ import Header from '../components/Header.astro';
 		-moz-text-fill-color: transparent;
 	}
 
+	#seccionSergio {
+		height: auto; /*Cambiar a auto*/
+		width: 100%;
+		margin-bottom: 35vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	#contenido {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+	.texto {
+		padding: 30px;
+		font-size: 1.2rem;
+		line-height: 1.4rem;
+		font-weight: 550;
+		letter-spacing: -0.5px;
+		text-align: justify;
+	}
 
-
-
-
+	#figureIlustracion {
+		height: 180px;
+		width: 180px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 0;
+		border:  0;
+	}
+	#figureIlustracion img {
+		max-width: 100%;
+		max-width: 100%;
+	}
 </style>
