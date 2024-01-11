@@ -24,13 +24,8 @@ const { title } = Astro.props;
 <style is:global>
 	body {
 		background-color: transparent !important;
-		background: linear-gradient(to bottom, 
-			rgb(241, 245, 249) 0%,     /* Posición inicial del primer color */
-			rgb(37, 99, 235) 50%,
-				/* Posición inicial del segundo color (centro) */
-			rgb(0, 0, 0) 95%          /* Posición final del tercer color */
-		);	
-
+		background: radial-gradient(at center top, rgb(29, 78, 216), rgb(30, 64, 175), rgb(17, 24, 39))
+		/*radial-gradient(at center top, rgb(219, 234, 254), rgb(147, 197, 253), rgb(59, 130, 246))*/
  
 	}
 	#mouse-follower {
