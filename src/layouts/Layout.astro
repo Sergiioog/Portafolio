@@ -6,6 +6,80 @@ interface Props {
 const { title } = Astro.props;
 ---
 <script type="module">
+	import hsl from "https://cdn.skypack.dev/hsl-to-hex";
+
+	// return a random number within a range
+	function random(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+	// ColorPalette class
+	class ColorPalette {
+	constructor() {
+		this.setColors();
+		this.setCustomProperties();
+	}
+
+	setColors() {
+		// pick a random hue somewhere between 220 and 360
+		this.hue = ~~random(0, 360);
+		this.complimentaryHue1 = this.hue + 30;
+		this.complimentaryHue2 = this.hue + 60;
+		// define a fixed saturation and lightness
+		this.saturation = 95;
+		this.lightness = 55; 
+		// define a base color
+		this.baseColor = hsl(this.hue, this.saturation, this.lightness);
+		// define a complimentary color, 30 degress away from the base
+		this.complimentaryColor1 = hsl(
+		this.complimentaryHue1,
+		this.saturation,
+		this.lightness
+		);
+		// define a second complimentary color, 60 degrees away from the base
+		this.complimentaryColor2 = hsl(
+		this.complimentaryHue2,
+		this.saturation,
+		this.lightness
+		);
+
+		// store the color choices in an array so that a random one can be picked later
+		this.colorChoices = [
+		this.baseColor,
+		this.complimentaryColor1,
+		this.complimentaryColor2
+		];
+	}
+
+	
+
+	setCustomProperties() {
+		// set CSS custom properties so that the colors defined here can be used throughout the UI
+		document.documentElement.style.setProperty("--hue", this.hue);
+		
+		document.documentElement.style.setProperty(
+		"--hue-complimentary2",
+		this.complimentaryHue2
+		);
+	}
+	}
+
+
+
+
+
+	
+
+	// Create colour palette
+	const colorPalette = new ColorPalette();
+
+
+
+
+
+
+
+
 
 </script>
 
@@ -21,13 +95,26 @@ const { title } = Astro.props;
 
 	</head>
 	<body>
+		<div id="mouse-follower"></div>
 		<slot />
 	</body>
 </html>
 <style is:global>
 	body {
-		background-color: transparent !important;
-		
+		background-color: rgb(0, 0, 0) !important;
+		/* background: radial-gradient(at center top, rgb(29, 78, 216), rgb(30, 64, 175), rgb(17, 24, 39)) */
+		/*radial-gradient(at center top, rgb(219, 234, 254), rgb(147, 197, 253), rgb(59, 130, 246))*/
+	}
+	#mouse-follower {
+		position: fixed;
+		width: 20px;
+		height: 20px;
+		border-radius: 100%;
+		background-color: rgb(255, 255, 255);
+		pointer-events: none;
+		transform: translate(-50%, -50%);
+		transition: transform 0.2s, width 0.2s, height 0.2s;
+		filter: blur(10px);
 	}
 	.container {
 		background-color: transparent !important;
@@ -230,3 +317,11 @@ select {
 		
 
 </style>
+<script>
+	document.addEventListener('mousemove', (e) => {
+	const mouseFollower = document.getElementById('mouse-follower');
+	mouseFollower.style.left = e.pageX + 'px';
+	mouseFollower.style.top = e.pageY + 'px';
+});
+
+</script>

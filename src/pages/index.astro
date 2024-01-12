@@ -11,37 +11,29 @@ import Header from '../components/Header.astro';
 			<figure>
 				<img src="assets/fotos/sergio.png" alt="Foto de Sergio">
 			</figure>
-			<h1>Sergio García</h1>
-			<h2 class="text-gradient">Desarrollador Web</h2>
-			<div id="lista_redes">
-				<a href="https://github.com/Sergiioog"><img src="assets/iconos/githubred.svg" alt="GitHub"></a>
-				<a href="https://www.linkedin.com/feed/"><img id="linkedIn" src="assets/iconos/linkedinred.svg" alt="LinkedIn"></a>
-				<a href="https://twitter.com/home"><img src="assets/iconos/xred.svg" alt="X"></a>
+			<div id="nombreApellidos">
+				<h1>Sergio García</h1>
+				<h2>Desarrollador Web</h2>
+				<div class="contactame">
+					<p>Contáctame</p>
+				</div>
 			</div>
+			
+			
+			
+			
+		
 			  
 		</div>
 	</section>
-	<section id="seccionSergio">
-		<h2>¿Quién es <span class="text-gradient">Sergio</span>?</h2>
-        <div id="contenido">
-          <p class="texto">¡Hola! Mi nombre es Sergio García, tengo 19 años y actualmente estoy estudiando un Ciclo Formativo de Grado Superior
-            (CFGS) de Desarrollo de Aplicaciones Web en la U-Tad (Universidad de Tecnología y Arte Digital), adscrita a la Universidad Camilo José Cela. <br><br>
-            Desde pequeño me ha gustado el mundo de la tecnología, los ordenadores y la programación. Actualmente estoy familiarizándome con 
-            lenguajes de programacion cómo Java, JavaScript o Angular aunque trabajo constantemente para seguir mejorando.
-            <br><br>
-            Entre mis aptitudes considero que soy una persona trabajadora y curiosa, a la que le gusta aprender y mejorar en cuálquier ámbito
-            de su vida.</p>
-            <figure id="figureIlustracion">
-              <img src="assets/ilustraciones/sergioilus.png" alt="Foto de Sergio" id="sergioilus">
-          </figure>
-        </div>
-	</section> -->
+	
+
 
 </Layout>
 
 <style>
-	/* #principal {
-		height: auto; /*Cambiar a auto
+	#principal {
+		height: auto; /*Cambiar a auto*/
 		width: 100%;
 		margin-bottom: 35vh;
 	}
@@ -67,7 +59,7 @@ import Header from '../components/Header.astro';
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Esto mantiene la relación de aspecto y centra la imagen 
+        object-fit: cover; /* Esto mantiene la relación de aspecto y centra la imagen */
     }
 
 
@@ -102,7 +94,7 @@ import Header from '../components/Header.astro';
 	}
 
 	#seccionSergio {
-		height: auto; /*Cambiar a auto
+		height: auto; /*Cambiar a auto*/
 		width: 100%;
 		margin-bottom: 35vh;
 		display: flex;
@@ -143,13 +135,13 @@ import Header from '../components/Header.astro';
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 35px; /* ajusta según sea necesario 
+		height: 35px; /* ajusta según sea necesario */
 	}
 
 	#lista_redes a {
 		text-decoration: none;
-		color: white; /* ajusta según sea necesario 
-		margin: 0 8px; /* ajusta según sea necesario
+		color: white; /* ajusta según sea necesario */
+		margin: 0 8px; /* ajusta según sea necesario */
 		margin-top: 10px;
 	}
 	#lista_redes a img {
@@ -159,6 +151,6 @@ import Header from '../components/Header.astro';
 	#linkedIn {
 		height: 100%;
 	;
-	} */
+	}
 
 </style>
