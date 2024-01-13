@@ -1,0 +1,91 @@
+---
+interface Props {
+    nombre: string;
+    imagen: any;
+    alt : string;
+}
+
+const {nombre,imagen,alt} = Astro.props; 
+---
+
+<figure class="container">
+    <img src={imagen} alt={alt}>
+    <span class="tooltip">{nombre}</span>
+</figure>
+
+<style>
+    
+    .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(252, 251, 251, 0.166);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 12.5px );
+    -webkit-backdrop-filter: blur( 12.5px );
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.277);
+    font-weight: 500;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 108%; /* Posición del tooltip por encima del elemento */
+    left: 50%;
+    margin-left: -60px; /* Centrar el tooltip */
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}   
+
+  .container {
+    flex-basis: 100%;
+    flex-grow: 1; 
+    max-width: 110px; 
+    max-height: 110px;
+    margin: 10px; 
+    height: auto;
+    width: 20px;
+    -webkit-animation: fade-in-bck 1s ease-in-out ;
+	  animation: fade-in-bck 1s ease-in-out ;
+    background: rgba(252, 251, 251, 0.166);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 12.5px );
+    -webkit-backdrop-filter: blur( 12.5px );
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.277);
+    padding: 10px;
+}   
+.container img {
+       width: 100%;
+        height: 100%;
+        margin: auto;
+}
+@-webkit-keyframes fade-in-bck {
+    0% {
+      -webkit-transform: translateZ(80px);
+              transform: translateZ(80px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+      opacity: 1;
+    }
+  }
+
+
+  .lang_container {
+    height: auto;
+    width: 90%;
+    margin-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Espaciado uniforme entre elementos */
+    cursor: pointer;
+}
+</style>

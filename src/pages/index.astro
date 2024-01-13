@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import TechBox from '../components/TechBox.astro';
 ---
 
 <Layout title="Sergiioog">
@@ -36,9 +37,9 @@ import Header from '../components/Header.astro';
 			</div>  
 		</div>
 	</section>
-    <section id="quienEsSergio">
+    <section class="quienEsSergio">
         <h2>¿Quién es Sergio?</h2>
-        <div id="divHola">
+        <div class="divTexto">
           <p class="texto">¡Hola! Mi nombre es Sergio García, tengo 19 años y actualmente estoy estudiando un Ciclo Formativo de Grado Superior
             (CFGS) de Desarrollo de Aplicaciones Web en la U-Tad (Universidad de Tecnología y Arte Digital), adscrita a la Universidad Camilo José Cela. <br><br>
             Desde pequeño me ha gustado el mundo de la tecnología, los ordenadores y la programación. Actualmente estoy familiarizándome con 
@@ -50,7 +51,28 @@ import Header from '../components/Header.astro';
                 <img src="assets/ilustraciones/sergioilus.png" alt="Ilustracion Sergio">
             </figure>
         </div>
-       
+    </section>
+    <section class="quienEsSergio">
+        <h2>Mi Tech Stack</h2>
+        <div class="divTexto mt-4">
+            <TechBox nombre='HTML' imagen={"assets/iconos/html5.svg"} alt="HTML"  />  
+            <TechBox nombre='CSS' imagen={"assets/iconos/css-3-svgrepo-com.svg"} alt="CSS"  />
+            <TechBox nombre='JavaScript' imagen={"assets/iconos/js.svg"} alt="JS"  />    
+            <TechBox nombre='Java' imagen={"assets/iconos/java.svg"} alt="Java"  />
+            <TechBox nombre='Angular' imagen={"assets/iconos/angular.svg"} alt="Angular"  />   
+            <TechBox nombre='Astro' imagen={"assets/iconos/astro.png"} alt="Astro"  />   
+            <TechBox nombre='NodeJS' imagen={"assets/iconos/nodejs.svg"} alt="Node JS"  />  
+            <TechBox nombre='MySQL' imagen={"assets/iconos/mysql.svg"} alt="MySQL"  />    
+            <TechBox nombre='MongoDB' imagen={"assets/iconos/mongo.svg"} alt="MongoDB"  />   
+            <TechBox nombre='PHP' imagen={"assets/iconos/php.svg"} alt="PHP"  />  
+            <TechBox nombre='Git' imagen={"assets/iconos/git.svg"} alt="Git"  />    
+            <TechBox nombre='Docker' imagen={"assets/iconos/docker-svgrepo-com.svg"} alt="Docker"  />   
+            <TechBox nombre='Linux' imagen={"assets/iconos/linux.svg"} alt="Linux"  />   
+            <TechBox nombre='Figma' imagen={"assets/iconos/figma.svg"} alt="Figma"  />   
+            <TechBox nombre='GitHub' imagen={"assets/iconos/github.svg"} alt="GitHub"  />   
+            <TechBox nombre='Tailwind' imagen={"assets/iconos/tailwind.svg"} alt="Tailwind"  />  
+            <TechBox nombre='Bootstrap' imagen={"assets/iconos/bootstrap.svg"} alt="Bootstrap"  />  
+        </div>
     </section>
 	
 
@@ -176,7 +198,7 @@ h2 {
     
 }
 
-#quienEsSergio {
+.quienEsSergio {
     height: auto;
     width: 100%;
     margin-bottom: 15vh;
@@ -185,7 +207,7 @@ h2 {
     align-items: center;
     flex-direction: column;
 }
-#divHola {
+.divTexto {
     height: auto;
     width: 80vw;
     display: flex;
